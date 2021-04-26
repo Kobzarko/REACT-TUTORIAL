@@ -1,0 +1,18 @@
+At first you need to disable JSHint extension.
+Install ESLint extension.
+
+In the terminal enter
+npm install -g eslint
+
+eslint --init
+if you don't have package.json 
+npm init
+
+https://github.com/babel/eslint-plugin-babel
+npm install eslint-plugin-babel 
+
+https://www.npmjs.com/package/eslint-plugin-react
+npm i eslint-plugin-react
+
+inspect file
+eslint filename.js
