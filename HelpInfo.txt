@@ -60,3 +60,6 @@ cd my-app
 npm start
 
 we can't use two project in the same folder
+
+create react project from scratch
+https://vanillaweb.ru/create-react-boilerplate/
