@@ -12,7 +12,7 @@ export default class PostListItem extends Component {
     this.onImportant = this.onImportant.bind(this);
     this.onLike = this.onLike.bind(this);
   }
-
+  // setState изменяет состояние компонента
   onImportant() {
     this.setState(({ important }) => ({
       important: !important,
@@ -25,6 +25,7 @@ export default class PostListItem extends Component {
     }));
   }
 
+  // метод отрисовывает наш класс на странице
   render() {
     const { label } = this.props;
     const { important, like } = this.state;

@@ -9,6 +9,8 @@ import PostAddForm from "../post-add-form";
 import "./app.css";
 
 const App = () => {
+  // посты с бд для postlist
+  // id это уникальные ключи для реакта
   const data = [
     { label: "Going to learn React", important: true, id: "xhgf" },
     { label: "Going to learn Vue", important: false, id: "ikjmn" },
@@ -22,6 +24,7 @@ const App = () => {
         <SearchPanel />
         <PostStatusFilter />
       </div>
+      {/* передаем наш массив в postlist */}
       <PostList posts={data} />
       <PostAddForm />
     </div>
