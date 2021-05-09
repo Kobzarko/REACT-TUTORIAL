@@ -9,6 +9,7 @@ export default class PostListItem extends Component {
       important: false,
       like: false,
     };
+    // привязать обработчик
     this.onImportant = this.onImportant.bind(this);
     this.onLike = this.onLike.bind(this);
   }

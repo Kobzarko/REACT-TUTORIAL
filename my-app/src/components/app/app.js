@@ -7,6 +7,18 @@ import PostList from "../post-list";
 import PostAddForm from "../post-add-form";
 
 import "./app.css";
+// import style from '../App.module.css'
+import styled from "styled-components";
+
+const AppBlock = styled.div`
+  margin: 0 auto;
+  max-width: 800px;
+`;
+
+// наследуем стили используя существующие
+// const StyledAppBlock = styled(AppBlock)`
+//   background-color: greenyellow;
+// `;
 
 const App = () => {
   // посты с бд для postlist
@@ -18,7 +30,7 @@ const App = () => {
   ];
 
   return (
-    <div className="app">
+    <AppBlock>
       <AppHeader />
       <div className="search-panel d-flex">
         <SearchPanel />
@@ -27,7 +39,7 @@ const App = () => {
       {/* передаем наш массив в postlist */}
       <PostList posts={data} />
       <PostAddForm />
-    </div>
+    </AppBlock>
   );
 };
 

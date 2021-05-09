@@ -63,3 +63,19 @@ we can't use two project in the same folder
 
 create react project from scratch
 https://vanillaweb.ru/create-react-boilerplate/
+
+
+Add style in react project
+
+npm install node-sass --save
+
+Add reactstrap into the project
+
+npm install reactstrap bootstrap@4 --save
+
+add styled-components library
+
+npm install --save styled-components
+
+you can install plugin for styled-components
+vscode-styled-components
