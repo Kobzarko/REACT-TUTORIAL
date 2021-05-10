@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 
 import AppHeader from "../app-header";
 import SearchPanel from "../search-panel";
@@ -20,27 +20,44 @@ const AppBlock = styled.div`
 //   background-color: greenyellow;
 // `;
 
-const App = () => {
-  // посты с бд для postlist
-  // id это уникальные ключи для реакта
-  const data = [
-    { label: "Going to learn React", important: true, id: "xhgf" },
-    { label: "Going to learn Vue", important: false, id: "ikjmn" },
-    { label: "Going to learn Angular", important: false, id: "edfg" },
-  ];
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    // посты с бд для postlist
+    // id это уникальные ключи для реакта
+    this.state = {
+      data: [
+        { label: "Going to learn React", important: true, id: "xhgf" },
+        { label: "Going to learn Vue", important: false, id: "ikjmn" },
+        { label: "Going to learn Angular", important: false, id: "edfg" },
+      ],
+    };
 
-  return (
-    <AppBlock>
-      <AppHeader />
-      <div className="search-panel d-flex">
-        <SearchPanel />
-        <PostStatusFilter />
-      </div>
-      {/* передаем наш массив в postlist */}
-      <PostList posts={data} />
-      <PostAddForm />
-    </AppBlock>
-  );
-};
+    this.deleteItem = this.deleteItem.bind(this);
+  }
 
-export default App;
+  deleteItem(id) {
+    this.setState(({ data }) => {
+      const index = data.findIndex((elem) => elem.id === id);
+      const newArr = [...data.slice(0, index), ...data.slice(index + 1)];
+      return {
+        data: newArr,
+      };
+    });
+  }
+
+  render() {
+    return (
+      <AppBlock>
+        <AppHeader />
+        <div className="search-panel d-flex">
+          <SearchPanel />
+          <PostStatusFilter />
+        </div>
+        {/* передаем наш массив в postlist */}
+        <PostList posts={this.state.data} onDelete={this.deleteItem} />
+        <PostAddForm />
+      </AppBlock>
+    );
+  }
+}
