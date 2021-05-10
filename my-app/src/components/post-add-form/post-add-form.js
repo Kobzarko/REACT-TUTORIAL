@@ -1,19 +1,25 @@
 import React from "react";
 
 import "./post-add-form.css";
+import { Button } from "reactstrap";
 
-const PostAddForm = () => {
+const PostAddForm = ({ onAdd }) => {
   return (
-    <form className="bottom-panel d-flex ">
+    <div className="bottom-panel d-flex ">
       <input
         type="text"
         placeholder="What do you think about?"
         className="from-control new-post-label"
       />
-      <button type="Submit" className="btn btn-outline-secondary">
+      <Button
+        type="Submit"
+        outline
+        color="secondary"
+        onClick={() => onAdd("Hello")}
+      >
         Add
-      </button>
-    </form>
+      </Button>
+    </div>
   );
 };
 

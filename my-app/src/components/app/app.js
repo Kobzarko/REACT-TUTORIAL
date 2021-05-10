@@ -27,19 +27,37 @@ export default class App extends Component {
     // id это уникальные ключи для реакта
     this.state = {
       data: [
-        { label: "Going to learn React", important: true, id: "xhgf" },
-        { label: "Going to learn Vue", important: false, id: "ikjmn" },
-        { label: "Going to learn Angular", important: false, id: "edfg" },
+        { label: "Going to learn React", important: true, id: "first" },
+        { label: "Going to learn Vue", important: false, id: "second" },
+        { label: "Going to learn Angular", important: false, id: "third" },
       ],
     };
 
     this.deleteItem = this.deleteItem.bind(this);
+    this.addItem = this.addItem.bind(this);
+
+    this.maxId = 4;
   }
 
   deleteItem(id) {
     this.setState(({ data }) => {
       const index = data.findIndex((elem) => elem.id === id);
       const newArr = [...data.slice(0, index), ...data.slice(index + 1)];
+      return {
+        data: newArr,
+      };
+    });
+  }
+
+  addItem(body) {
+    const newItem = {
+      label: body,
+      important: false,
+      id: this.maxId,
+    };
+
+    this.setState(({ data }) => {
+      const newArr = [...data, newItem];
       return {
         data: newArr,
       };
@@ -56,7 +74,7 @@ export default class App extends Component {
         </div>
         {/* передаем наш массив в postlist */}
         <PostList posts={this.state.data} onDelete={this.deleteItem} />
-        <PostAddForm />
+        <PostAddForm onAdd={this.addItem} />
       </AppBlock>
     );
   }
