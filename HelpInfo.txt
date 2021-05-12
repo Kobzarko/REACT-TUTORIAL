@@ -79,3 +79,8 @@ npm install --save styled-components
 
 you can install plugin for styled-components
 vscode-styled-components
+
+add generator library 
+npm i react-id-generator
+
+use nextId() method
