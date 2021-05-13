@@ -46,12 +46,16 @@ export default class App extends Component {
           id: nextId(),
         },
       ],
+      term: "",
+      filter: "all",
     };
 
     this.deleteItem = this.deleteItem.bind(this);
     this.addItem = this.addItem.bind(this);
     this.onToggleImportant = this.onToggleImportant.bind(this);
     this.onToggleLiked = this.onToggleLiked.bind(this);
+    this.onUpdateSearch = this.onUpdateSearch.bind(this);
+    this.onFilterSelect = this.onFilterSelect.bind(this);
   }
 
   deleteItem(id) {
@@ -116,22 +120,54 @@ export default class App extends Component {
     });
   }
 
+  searchPost(items, term) {
+    if (term.length === 0) {
+      return items;
+    }
+    // вернет массив с нашими постами
+    return items.filter((item) => {
+      return item.label.indexOf(term) > -1;
+    });
+  }
+
+  filterPost(items, filter) {
+    if (filter === "like") {
+      return items.filter((item) => item.like);
+    } else {
+      return items;
+    }
+  }
+
+  onUpdateSearch(term) {
+    this.setState({ term });
+  }
+
+  onFilterSelect(filter) {
+    this.setState({ filter });
+  }
+
   render() {
-    const { data } = this.state;
+    const { data, term, filter } = this.state;
+
     const liked = data.filter((item) => item.like).length;
 
     const allPosts = data.length;
+
+    const visiblePosts = this.filterPost(this.searchPost(data, term), filter);
 
     return (
       <AppBlock>
         <AppHeader liked={liked} allPosts={allPosts} />
         <div className="search-panel d-flex">
-          <SearchPanel />
-          <PostStatusFilter />
+          <SearchPanel onUpdateSearch={this.onUpdateSearch} />
+          <PostStatusFilter
+            filter={filter}
+            onFilterSelect={this.onFilterSelect}
+          />
         </div>
         {/* передаем наш массив в postlist */}
         <PostList
-          posts={data}
+          posts={visiblePosts}
           onDelete={this.deleteItem}
           onToggleImportant={this.onToggleImportant}
           onToggleLiked={this.onToggleLiked}
