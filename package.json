@@ -14,6 +14,7 @@
     "eslint-plugin-react": "^7.23.2"
   },
   "dependencies": {
+    "create-react-app": "^4.0.3",
     "font-awesome": "^4.7.0"
   }
 }
