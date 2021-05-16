@@ -47,3 +47,5 @@ const Header = () => {
     </HeaderBlock>
   );
 };
+
+export default Header;
