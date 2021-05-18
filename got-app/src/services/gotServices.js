@@ -45,7 +45,29 @@ class gotServices {
       gender: char.gender,
       born: char.born,
       died: char.died,
+      playedBy: char.playedBy,
       culture: char.culture,
+    };
+  }
+
+  _transformHouse(house) {
+    return {
+      name: house.name,
+      region: house.region,
+      words: house.words,
+      title: house.title,
+      founded: house.founded,
+      overlord: house.overlord,
+      ancestralWeapons: house.ancestralWeapons,
+    };
+  }
+
+  _transformBook(book) {
+    return {
+      name: book.name,
+      numberOfPages: book.numberOfPages,
+      publiser: book.publiser,
+      released: book.released,
     };
   }
 }
