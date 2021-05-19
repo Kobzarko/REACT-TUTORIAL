@@ -39,7 +39,18 @@ class gotServices {
     return this.getResource(`/houses/${id}/`);
   }
 
+  // func checks object fields on empty
+  isEmpty(data) {
+    // return data === "" ? "none" : data;
+    for (let key in data) {
+      if (data.hasOwnProperty(key) && data[key] === "") {
+        data[key] = "none";
+      }
+    }
+  }
+
   _transformCharacter(char) {
+    this.isEmpty(char);
     return {
       name: char.name,
       gender: char.gender,
@@ -47,10 +58,18 @@ class gotServices {
       died: char.died,
       playedBy: char.playedBy,
       culture: char.culture,
+
+      // name: this.isEmpty(char.name),
+      // gender: this.isEmpty(char.gender),
+      // born: this.isEmpty(char.born),
+      // died: this.isEmpty(char.died),
+      // playedBy: this.isEmpty(char.playedBy),
+      // culture: this.isEmpty(char.culture),
     };
   }
 
   _transformHouse(house) {
+    this.isEmpty(house);
     return {
       name: house.name,
       region: house.region,
@@ -63,6 +82,7 @@ class gotServices {
   }
 
   _transformBook(book) {
+    this.isEmpty(book);
     return {
       name: book.name,
       numberOfPages: book.numberOfPages,
