@@ -27,8 +27,8 @@ class randomChar extends Component {
   };
 
   updateChar() {
-    const id = Math.floor(Math.random() * 140 + 25);
-
+    // const id = Math.floor(Math.random() * 140 + 25);
+    const id = 1345678987654;
     this.gotService
       .getCharacter(id)
       .then(this.onCharLoaded)
@@ -59,7 +59,7 @@ class randomChar extends Component {
 
 // a component reflects design
 const View = ({ char }) => {
-  const { name, gender, born, died, culture } = char;
+  const { name, gender, born, died, culture, playedBy } = char;
   return (
     <>
       <h4>Random Character: {name}</h4>
@@ -82,6 +82,11 @@ const View = ({ char }) => {
           {" "}
           <span className="term">Culture </span>
           <span>{culture}</span>
+        </li>
+        <li className="list-group-item d-flex justify-content-between">
+          {" "}
+          <span className="term">Played By </span>
+          <span>{playedBy}</span>
         </li>
       </ul>
     </>

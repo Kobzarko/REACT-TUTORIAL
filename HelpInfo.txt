@@ -87,3 +87,9 @@ use nextId() method
 
 To change components, 
  state and component must be interconnected 
+
+To use image in specify component,
+ you can import this image in component file
+ import img from './error.jpg'
+Now you can use this image in your jsx
+<img> src={img} alt='error'</img>
