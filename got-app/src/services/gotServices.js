@@ -41,16 +41,26 @@ class gotServices {
 
   // func checks object fields on empty
   isEmpty(data) {
-    // return data === "" ? "none" : data;
-    for (let key in data) {
-      if (data.hasOwnProperty(key) && data[key] === "") {
-        data[key] = "none";
-      }
-    }
+    // return (data = data ?? "none");
+    // if (data) {
+    //   return data;
+    // } else {
+    //   return "no data :(";
+    // }
+    // console.log(data);
+    // for (let key in data) {
+    //   if (
+    //     data[key] === "" ||
+    //     typeof data[key] === "undefined" ||
+    //     data[key] === null
+    //   ) {
+    //     data[key] = "none";
+    //   }
+    // }
   }
 
   _transformCharacter(char) {
-    this.isEmpty(char);
+    // this.isEmpty(char);
     return {
       name: char.name,
       gender: char.gender,

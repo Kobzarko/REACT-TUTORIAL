@@ -6,17 +6,21 @@ import ErrorMessage from "../errorMessage/errorMessage";
 
 //a component reflects logic
 class randomChar extends Component {
-  constructor() {
-    super();
-    this.updateChar();
-  }
-
   gotService = new gotService();
   state = {
     char: {},
     loading: true,
     error: false,
   };
+
+  componentDidMount() {
+    this.updateChar();
+    this.timerId = setInterval(this.updateChar, 2000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerId);
+  }
 
   onError = (err) => {
     this.setState({ error: true, loading: false });
@@ -26,14 +30,14 @@ class randomChar extends Component {
     this.setState({ char, loading: false });
   };
 
-  updateChar() {
-    // const id = Math.floor(Math.random() * 140 + 25);
-    const id = 1345678987654;
+  updateChar = () => {
+    const id = Math.floor(Math.random() * 140 + 25);
+    // const id = 1345678987654;
     this.gotService
       .getCharacter(id)
       .then(this.onCharLoaded)
       .catch(this.onError);
-  }
+  };
 
   render() {
     const { char, loading, error } = this.state;
