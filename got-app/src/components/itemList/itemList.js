@@ -24,10 +24,14 @@ class itemList extends Component {
       charList: null,
     });
   }
-
+  // create array of characters
   renderItems(arr) {
     return arr.map((item, i) => {
-      return <ListGroupItem key={i}>{item.name}</ListGroupItem>;
+      return (
+        <ListGroupItem key={i} onClick={() => this.props.onCharSelected(i)}>
+          {item.name}
+        </ListGroupItem>
+      );
     });
   }
 

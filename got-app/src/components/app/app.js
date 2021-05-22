@@ -4,11 +4,12 @@ import Header from "../header";
 import RandomChar from "../randomChar";
 import CharDetails from "../charDetails";
 import ItemList from "../itemList";
-
+import characterPage from "../characterPage/characterPage";
 // import "./app.css";
 class App extends Component {
   state = {
     showRandomChar: true,
+    selectedChar: 25,
   };
 
   toggleRandomChar = () => {
@@ -18,6 +19,7 @@ class App extends Component {
       };
     });
   };
+
   render() {
     const char = this.state.showRandomChar ? <RandomChar /> : null;
     return (
@@ -39,14 +41,7 @@ class App extends Component {
               </ButtonToggle>
             </Col>
           </Row>
-          <Row>
-            <Col>
-              <ItemList />
-            </Col>
-            <Col md="6">
-              <CharDetails />
-            </Col>
-          </Row>
+          <characterPage />
         </Container>
       </>
     );

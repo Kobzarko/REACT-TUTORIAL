@@ -93,3 +93,8 @@ To use image in specify component,
  import img from './error.jpg'
 Now you can use this image in your jsx
 <img> src={img} alt='error'</img>
+
+install http-server
+npm i http-server
+
+launch http-server folder//what you want to launch
