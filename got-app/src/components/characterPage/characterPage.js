@@ -4,14 +4,20 @@ import ItemList from "../itemList";
 import CharDetails from "../charDetails";
 import ErrorMessage from "../errorMessage";
 
-export default class characterPage extends Component {
-  state = { selectedChar: 110, error: false };
+export default class CharacterPage extends Component {
+  state = { selectedChar: 99, error: false };
 
   onCharSelected = (id) => {
     this.setState({
       selectedChar: id,
     });
   };
+
+  componentDidCatch() {
+    this.setState({
+      error: true,
+    });
+  }
 
   render() {
     if (this.state.error) {

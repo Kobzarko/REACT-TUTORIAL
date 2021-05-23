@@ -22,6 +22,14 @@ export default class CharDetails extends Component {
       this.updateChar();
     }
   }
+
+  onCharDetailsLoaded = (char) => {
+    this.setState({
+      char,
+      loading: false,
+    });
+  };
+
   //3 create person
   updateChar() {
     const { charId } = this.props;
@@ -46,12 +54,22 @@ export default class CharDetails extends Component {
 
   //2 invoke render
   render() {
-    if (!this.state.char) {
+    if (!this.state.char && this.state.error) {
+      return <ErrorMessage />;
+    } else if (!this.state.char) {
       return <span className="select-error">Please select a character</span>;
     }
 
-    // if state exist
-    const { name, gender, born, died, culture, playedBy } = this.state;
+    // if state char exist
+    const { name, gender, born, died, culture } = this.state.char;
+
+    if (this.state.loading) {
+      return (
+        <div className="char-details rounded">
+          <Spinner />;
+        </div>
+      );
+    }
 
     return (
       <div className="char-details rounded">
@@ -72,10 +90,6 @@ export default class CharDetails extends Component {
           <li className="list-group-item d-flex justify-content-between">
             <span className="term">Culture</span>
             <span>{culture}</span>
-          </li>
-          <li className="list-group-item d-flex justify-content-between">
-            <span className="term">PlayedBy</span>
-            <span>{playedBy}</span>
           </li>
         </ul>
       </div>

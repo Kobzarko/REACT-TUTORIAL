@@ -42,11 +42,11 @@ class gotServices {
   // func checks object fields on empty
   isEmpty(data) {
     // return (data = data ?? "none");
-    // if (data) {
-    //   return data;
-    // } else {
-    //   return "no data :(";
-    // }
+    if (data) {
+      return data;
+    } else {
+      return "no data";
+    }
     // console.log(data);
     // for (let key in data) {
     //   if (
@@ -57,29 +57,28 @@ class gotServices {
     //     data[key] = "none";
     //   }
     // }
+    // return data;
   }
 
-  _transformCharacter(char) {
+  _transformCharacter = (char) => {
     // this.isEmpty(char);
     return {
-      name: char.name,
-      gender: char.gender,
-      born: char.born,
-      died: char.died,
-      playedBy: char.playedBy,
-      culture: char.culture,
+      // name: char.name,
+      // gender: char.gender,
+      // born: char.born,
+      // died: char.died,
+      // culture: char.culture,
 
-      // name: this.isEmpty(char.name),
-      // gender: this.isEmpty(char.gender),
-      // born: this.isEmpty(char.born),
-      // died: this.isEmpty(char.died),
-      // playedBy: this.isEmpty(char.playedBy),
-      // culture: this.isEmpty(char.culture),
+      name: this.isEmpty(char.name),
+      gender: this.isEmpty(char.gender),
+      born: this.isEmpty(char.born),
+      died: this.isEmpty(char.died),
+      culture: this.isEmpty(char.culture),
     };
-  }
+  };
 
   _transformHouse(house) {
-    this.isEmpty(house);
+    // this.isEmpty(house);
     return {
       name: house.name,
       region: house.region,
@@ -92,7 +91,7 @@ class gotServices {
   }
 
   _transformBook(book) {
-    this.isEmpty(book);
+    // this.isEmpty(book);
     return {
       name: book.name,
       numberOfPages: book.numberOfPages,

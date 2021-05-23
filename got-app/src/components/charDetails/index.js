@@ -1,3 +1,3 @@
-import charDetails from "./charDetails";
+import CharDetails from "./charDetails";
 
-export default charDetails;
+export default CharDetails;

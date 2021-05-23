@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import { Col, Row, Container, ButtonToggle } from "reactstrap";
 import Header from "../header";
 import RandomChar from "../randomChar";
-import CharDetails from "../charDetails";
-import ItemList from "../itemList";
-import characterPage from "../characterPage/characterPage";
+import CharacterPage from "../characterPage/";
 // import "./app.css";
 class App extends Component {
   state = {
@@ -41,7 +39,7 @@ class App extends Component {
               </ButtonToggle>
             </Col>
           </Row>
-          <characterPage />
+          <CharacterPage />
         </Container>
       </>
     );

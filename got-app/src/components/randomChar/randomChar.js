@@ -12,12 +12,12 @@ class randomChar extends Component {
     loading: true,
     error: false,
   };
-
+  // method was invoked
   componentDidMount() {
     this.updateChar();
     this.timerId = setInterval(this.updateChar, 5000);
   }
-
+  //invoke when component was removed
   componentWillUnmount() {
     clearInterval(this.timerId);
   }
@@ -63,7 +63,7 @@ class randomChar extends Component {
 
 // a component reflects design
 const View = ({ char }) => {
-  const { name, gender, born, died, culture, playedBy } = char;
+  const { name, gender, born, died, culture } = char;
   return (
     <>
       <h4>Random Character: {name}</h4>
@@ -86,11 +86,6 @@ const View = ({ char }) => {
           {" "}
           <span className="term">Culture </span>
           <span>{culture}</span>
-        </li>
-        <li className="list-group-item d-flex justify-content-between">
-          {" "}
-          <span className="term">Played By </span>
-          <span>{playedBy}</span>
         </li>
       </ul>
     </>
