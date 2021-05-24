@@ -14,7 +14,7 @@ class gotServices {
   }
 
   async getAllCharacters() {
-    const res = await this.getResource("/characters?page=5&pageSize=10");
+    const res = await this.getResource("/characters?page=8&pageSize=10");
     return res.map(this._transformCharacter);
   }
 
@@ -39,45 +39,39 @@ class gotServices {
     return this.getResource(`/houses/${id}/`);
   }
 
-  // func checks object fields on empty
-  isEmpty(data) {
-    // return (data = data ?? "none");
-    if (data) {
-      return data;
-    } else {
-      return "no data";
+  _isSet = (data) => {
+    for (let key in data) {
+      if (
+        data[key] === "" ||
+        typeof data[key] === "undefined" ||
+        data[key] === null
+      ) {
+        data[key] = "none";
+      }
     }
-    // console.log(data);
-    // for (let key in data) {
-    //   if (
-    //     data[key] === "" ||
-    //     typeof data[key] === "undefined" ||
-    //     data[key] === null
-    //   ) {
-    //     data[key] = "none";
-    //   }
-    // }
-    // return data;
-  }
+    return data;
+  };
 
   _transformCharacter = (char) => {
+    this._isSet(char);
     // this.isEmpty(char);
     return {
-      // name: char.name,
-      // gender: char.gender,
-      // born: char.born,
-      // died: char.died,
-      // culture: char.culture,
+      name: char.name,
+      gender: char.gender,
+      born: char.born,
+      died: char.died,
+      culture: char.culture,
 
-      name: this.isEmpty(char.name),
-      gender: this.isEmpty(char.gender),
-      born: this.isEmpty(char.born),
-      died: this.isEmpty(char.died),
-      culture: this.isEmpty(char.culture),
+      // name: this.isEmpty(char.name),
+      // gender: this.isEmpty(char.gender),
+      // born: this.isEmpty(char.born),
+      // died: this.isEmpty(char.died),
+      // culture: this.isEmpty(char.culture),
     };
   };
 
   _transformHouse(house) {
+    this._isSet(house);
     // this.isEmpty(house);
     return {
       name: house.name,
@@ -91,6 +85,7 @@ class gotServices {
   }
 
   _transformBook(book) {
+    this._isSet(book);
     // this.isEmpty(book);
     return {
       name: book.name,
