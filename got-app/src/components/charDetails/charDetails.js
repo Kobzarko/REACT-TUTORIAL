@@ -45,6 +45,13 @@ export default class CharDetails extends Component {
       .catch(() => this.onError());
   }
 
+  componentDidCatch() {
+    this.setState({
+      char: null,
+      error: true,
+    });
+  }
+
   onError() {
     this.setState({
       char: null,

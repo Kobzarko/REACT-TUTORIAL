@@ -94,7 +94,17 @@ To use image in specify component,
 Now you can use this image in your jsx
 <img> src={img} alt='error'</img>
 
-install http-server
+
+life cycle hooks
+componentDidMount() - component appears on the page
+componentDidUpdate() - component was updated
+componentWillUnmount() - component was removed
+componentDidCatch() - component has an error
+
+npm run build - create folder build with dist files
+
+to install http-server
 npm i http-server
 
-launch http-server folder//what you want to launch
+to launch 
+http-server folder//what you want to launch

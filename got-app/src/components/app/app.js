@@ -3,12 +3,20 @@ import { Col, Row, Container, ButtonToggle } from "reactstrap";
 import Header from "../header";
 import RandomChar from "../randomChar";
 import CharacterPage from "../characterPage/";
+import ErrorMessage from "../errorMessage";
 // import "./app.css";
 class App extends Component {
   state = {
     showRandomChar: true,
-    selectedChar: 25,
+    error: false,
   };
+
+  componentDidCatch() {
+    console.log("error");
+    this.state({
+      error: true,
+    });
+  }
 
   toggleRandomChar = () => {
     this.setState((state) => {
@@ -20,6 +28,9 @@ class App extends Component {
 
   render() {
     const char = this.state.showRandomChar ? <RandomChar /> : null;
+    if (this.state.error) {
+      return <ErrorMessage />;
+    }
     return (
       <>
         <Container>

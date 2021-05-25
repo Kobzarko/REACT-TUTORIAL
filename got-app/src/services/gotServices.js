@@ -14,7 +14,7 @@ class gotServices {
   }
 
   async getAllCharacters() {
-    const res = await this.getResource("/characters?page=8&pageSize=10");
+    const res = await this.getResource("/characters?page=5&pageSize=10");
     return res.map(this._transformCharacter);
   }
 
