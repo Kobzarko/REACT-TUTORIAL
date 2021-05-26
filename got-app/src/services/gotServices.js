@@ -52,10 +52,18 @@ class gotServices {
     return data;
   };
 
+  // get coincidence in the end of url string
+  // return digits into the char.id
+  _extractId = (obj) => {
+    const idRegexp = /\/([0-9]*)$/;
+    return obj.url.match(idRegexp)[1];
+  };
+
   _transformCharacter = (char) => {
     this._isSet(char);
     // this.isEmpty(char);
     return {
+      id: this._extractId(char),
       name: char.name,
       gender: char.gender,
       born: char.born,
@@ -74,6 +82,7 @@ class gotServices {
     this._isSet(house);
     // this.isEmpty(house);
     return {
+      id: this._extractId(house),
       name: house.name,
       region: house.region,
       words: house.words,
@@ -88,6 +97,7 @@ class gotServices {
     this._isSet(book);
     // this.isEmpty(book);
     return {
+      id: this._extractId(book),
       name: book.name,
       numberOfPages: book.numberOfPages,
       publiser: book.publiser,
