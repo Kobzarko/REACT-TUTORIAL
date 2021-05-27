@@ -1,24 +1,23 @@
 import React, { Component } from "react";
 import "./itemList.css";
 import { ListGroup, ListGroupItem } from "reactstrap";
-import gotService from "../../services/gotServices";
 import Spinner from "../spinner/spinner";
 import ErrorMessage from "../errorMessage";
 
-class itemList extends Component {
-  gotService = new gotService();
-
+class ItemList extends Component {
   state = {
-    charList: null,
+    itemList: null,
     error: false,
   };
 
   componentDidMount() {
-    this.gotService
-      .getAllCharacters()
-      .then((charList) => {
+    // get props from characterPage
+    const { getData } = this.props;
+    // here we receive data from gotService
+    getData()
+      .then((itemList) => {
         this.setState({
-          charList,
+          itemList,
         });
       })
       .catch(() => {
@@ -28,14 +27,14 @@ class itemList extends Component {
 
   componentDidCatch() {
     this.setState({
-      charList: null,
+      itemList: null,
       error: true,
     });
   }
 
   onError() {
     this.setState({
-      charList: null,
+      itemList: null,
       error: true,
     });
   }
@@ -52,19 +51,19 @@ class itemList extends Component {
   }
 
   render() {
-    const { charList, error } = this.state;
+    const { itemList, error } = this.state;
 
     if (error) {
       return <ErrorMessage />;
     }
-    if (!charList) {
+    if (!itemList) {
       return <Spinner />;
     }
 
-    const items = this.renderItems(charList);
+    const items = this.renderItems(itemList);
 
     return <ListGroup className="item-list">{items}</ListGroup>;
   }
 }
 
-export default itemList;
+export default ItemList;

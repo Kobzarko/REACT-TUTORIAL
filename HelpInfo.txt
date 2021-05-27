@@ -107,4 +107,4 @@ to install http-server
 npm i http-server
 
 to launch 
-http-server folder//what you want to launch
+http-server folder//what you want to launch 
