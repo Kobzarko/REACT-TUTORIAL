@@ -25,7 +25,7 @@ class gotServices {
   };
 
   getAllBooks = async () => {
-    return this.getResource("/books?page=5&pageSize=10");
+    return this.getResource("/books/");
   };
 
   getBook = async (id) => {

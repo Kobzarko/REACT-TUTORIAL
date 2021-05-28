@@ -41,10 +41,12 @@ class ItemList extends Component {
   // create array of characters
   renderItems(arr) {
     return arr.map((item) => {
-      const { id, name } = item;
+      const { id } = item;
+      // from parent characterPage receive renderItem={(item) => item.name}
+      const label = this.props.renderItem(item);
       return (
         <ListGroupItem key={id} onClick={() => this.props.onCharSelected(id)}>
-          {name}
+          {label}
         </ListGroupItem>
       );
     });

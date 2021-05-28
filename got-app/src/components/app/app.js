@@ -1,12 +1,16 @@
 import React, { Component } from "react";
-import { Col, Row, Container, ButtonToggle } from "reactstrap";
+import { Col, Row, Container, ButtonToggle, Button } from "reactstrap";
 import Header from "../header";
 import RandomChar from "../randomChar";
 import CharacterPage from "../characterPage/";
 import ErrorMessage from "../errorMessage";
+import ItemList from "../itemList";
+import CharDetails from "../charDetails";
+import gotService from "../../services/gotServices";
 
 // import "./app.css";
 class App extends Component {
+  gotService = new gotService();
   state = {
     showRandomChar: true,
     error: false,
@@ -52,9 +56,18 @@ class App extends Component {
             </Col>
           </Row>
           <CharacterPage />
-          {/* <Row>
+          <Row>
             <Col md="6">
-              <ItemList onCharSelected={this.onCharSelected} />
+              <ItemList
+                onCharSelected={this.onCharSelected}
+                getData={this.gotService.getAllBooks}
+                renderItem={({ name }) => (
+                  <>
+                    <span>{name}</span>
+                    <Button>Click me</Button>
+                  </>
+                )}
+              />
             </Col>
             <Col md="6">
               <CharDetails charId={this.state.SelectedChar} />
@@ -62,12 +75,16 @@ class App extends Component {
           </Row>
           <Row>
             <Col md="6">
-              <ItemList onCharSelected={this.onCharSelected} />
+              <ItemList
+                onCharSelected={this.onCharSelected}
+                getData={this.gotService.getAllHouses}
+                renderItem={(item) => item.name}
+              />
             </Col>
             <Col md="6">
               <CharDetails charId={this.state.SelectedChar} />
             </Col>
-          </Row> */}
+          </Row>
         </Container>
       </>
     );
