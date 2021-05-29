@@ -45,7 +45,7 @@ class ItemList extends Component {
       // from parent characterPage receive renderItem={(item) => item.name}
       const label = this.props.renderItem(item);
       return (
-        <ListGroupItem key={id} onClick={() => this.props.onCharSelected(id)}>
+        <ListGroupItem key={id} onClick={() => this.props.onItemSelected(id)}>
           {label}
         </ListGroupItem>
       );
