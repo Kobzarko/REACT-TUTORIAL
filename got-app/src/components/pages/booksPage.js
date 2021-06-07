@@ -23,6 +23,7 @@ export class BooksPage extends Component {
       error: true,
     });
   }
+
   render() {
     if (this.state.error) {
       return <ErrorMessage />;

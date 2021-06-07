@@ -108,3 +108,11 @@ npm i http-server
 
 to launch 
 http-server folder//what you want to launch 
+
+React.cloneElement - method for copy object
+
+React-router-dom installation
+npm i react-router-dom
+
+write in main app.js 
+import {BrowserRouter as Router, Route} from 'react-router-dom';

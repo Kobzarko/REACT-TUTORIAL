@@ -9,8 +9,9 @@ import ItemDetails from "../itemDetails";
 import gotService from "../../services/gotServices";
 
 // import "./app.css";
-class App extends Component {
+export default class App extends Component {
   gotService = new gotService();
+
   state = {
     showRandomChar: true,
     error: false,
@@ -90,5 +91,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;

@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "create-react-app": "^4.0.3",
-    "font-awesome": "^4.7.0"
+    "font-awesome": "^4.7.0",
+    "react-router-dom": "^5.2.0"
   }
 }
