@@ -1,22 +1,22 @@
 import React, { Component } from "react";
 import ItemList from "../itemList";
 import ErrorMessage from "../errorMessage";
-import gotService from "../../services/gotService";
+import gotService from "../../services/gotServices";
 import { withRouter } from "react-router-dom";
 
 export class BooksPage extends Component {
   gotService = new gotService();
 
   state = {
-    selectedBook: null,
+    // selectedBook: null,
     error: false,
   };
 
-  onItemSelected = (id) => {
-    this.setState({
-      selectedBook: id,
-    });
-  };
+  // onItemSelected = (id) => {
+  //   this.setState({
+  //     selectedBook: id,
+  //   });
+  // };
 
   componentDidCatch() {
     this.setState({

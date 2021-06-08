@@ -1,14 +1,12 @@
 import React, { Component } from "react";
-import { Col, Row, Container, ButtonToggle, Button } from "reactstrap";
+import { Col, Row, Container, ButtonToggle } from "reactstrap";
 import Header from "../header";
 import RandomChar from "../randomChar";
-import CharacterPage from "../characterPage/";
 import ErrorMessage from "../errorMessage";
-import ItemList from "../itemList";
-import ItemDetails from "../itemDetails";
 import gotService from "../../services/gotServices";
-
-// import "./app.css";
+import { CharacterPage, BooksPage, HousesPage, BooksItem } from "../pages";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import "./app.css";
 export default class App extends Component {
   gotService = new gotService();
 
@@ -38,56 +36,43 @@ export default class App extends Component {
       return <ErrorMessage />;
     }
     return (
-      <>
-        <Container>
-          <Header />
-        </Container>
-        <Container>
-          <Row>
-            <Col lg={{ size: 5, offset: 0 }}>
-              {char}
-              <ButtonToggle
-                color="primary"
-                className="mb-5"
-                // className="toggle-btn"
-                onClick={this.toggleRandomChar}
-              >
-                Toggle RandomChar
-              </ButtonToggle>
-            </Col>
-          </Row>
-          <CharacterPage />
-          <Row>
-            <Col md="6">
-              <ItemList
-                onItemSelected={this.onItemSelected}
-                getData={this.gotService.getAllBooks}
-                renderItem={({ name }) => (
-                  <>
-                    <span>{name}</span>
-                    <Button>Click me</Button>
-                  </>
-                )}
-              />
-            </Col>
-            <Col md="6">
-              <ItemDetails charId={this.state.SelectedChar} />
-            </Col>
-          </Row>
-          <Row>
-            <Col md="6">
-              <ItemList
-                onItemSelected={this.onItemSelected}
-                getData={this.gotService.getAllHouses}
-                renderItem={(item) => item.name}
-              />
-            </Col>
-            <Col md="6">
-              <ItemDetails charId={this.state.SelectedChar} />
-            </Col>
-          </Row>
-        </Container>
-      </>
+      <Router>
+        <div className="app">
+          <Container>
+            <Header />
+          </Container>
+          <Container>
+            <Row>
+              <Col lg={{ size: 5, offset: 0 }}>
+                {char}
+                <ButtonToggle
+                  color="primary"
+                  className="mb-5"
+                  // className="toggle-btn"
+                  onClick={this.toggleRandomChar}
+                >
+                  Toggle RandomChar
+                </ButtonToggle>
+              </Col>
+            </Row>
+            <Route
+              path="/"
+              exact
+              component={() => <h1>Welcome to GOT DB</h1>}
+            />
+            <Route path="/characters" exact component={CharacterPage} />
+            <Route path="/houses" exact component={HousesPage} />
+            <Route path="/books" exact component={BooksPage} />
+            <Route
+              path="/books/:id"
+              render={({ match }) => {
+                const { id } = match.params;
+                return <BooksItem bookId={id} />;
+              }}
+            />
+          </Container>
+        </div>
+      </Router>
     );
   }
 }

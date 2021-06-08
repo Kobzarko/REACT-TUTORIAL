@@ -116,3 +116,11 @@ npm i react-router-dom
 
 write in main app.js 
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+
+Sometimes when we connect BrowserRouter, styles can be lost.
+path="/" path to main page
+exact = {true} - strict path
+
+Link from React-router-dom
+<Link to='your path'></Link> is component like smart link for space
+
