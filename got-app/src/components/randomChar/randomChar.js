@@ -3,7 +3,7 @@ import "./randomChar.css";
 import gotService from "../../services/gotServices";
 import Spinner from "../spinner/spinner";
 import ErrorMessage from "../errorMessage/errorMessage";
-
+import PropTypes from "prop-types";
 //a component reflects logic
 class randomChar extends Component {
   gotService = new gotService();
@@ -12,10 +12,25 @@ class randomChar extends Component {
     loading: true,
     error: false,
   };
+
+  //default settings with static
+  static defaultProps = {
+    interval: PropTypes.number,
+  };
+
+  // static propTypes = {
+  //   interval: (props, propName, componentName) => {
+  //     const value = props[propName];
+  //     if (typeof value === "number" && !isNaN(value)) {
+  //       return null;
+  //     }
+  //     return new TypeError(`${componentName}: must to be a number`);
+  //   },
+  // };
   // method was invoked
   componentDidMount() {
     this.updateChar();
-    this.timerId = setInterval(this.updateChar, 5000);
+    this.timerId = setInterval(this.updateChar, this.props.interval);
   }
   //invoke when component was removed
   componentWillUnmount() {

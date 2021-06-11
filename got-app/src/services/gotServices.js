@@ -1,4 +1,4 @@
-class gotServices {
+class GotService {
   constructor() {
     this._apiBase = "https://www.anapioficeandfire.com/api";
   }
@@ -37,7 +37,7 @@ class gotServices {
   };
 
   getHouse = async (id) => {
-    return this.getResource(`/houses/${id}/`);
+    return this.getResource(`/houses/${id}`);
   };
 
   _isSet = (data) => {
@@ -107,4 +107,4 @@ class gotServices {
   }
 }
 
-export default gotServices;
+export default GotService;

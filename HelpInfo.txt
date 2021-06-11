@@ -124,3 +124,5 @@ exact = {true} - strict path
 Link from React-router-dom
 <Link to='your path'></Link> is component like smart link for space
 
+prop-types library type checking
+npm install prop-types
