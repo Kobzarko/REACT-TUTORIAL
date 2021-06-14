@@ -4,12 +4,8 @@ import { ListGroup, ListGroupItem } from "reactstrap";
 import Spinner from "../spinner/spinner";
 import ErrorMessage from "../errorMessage";
 import PropTypes from "prop-types";
+import gotService from "../../services/gotServices";
 class ItemList extends Component {
-  state = {
-    itemList: null,
-    // error: false,
-  };
-
   // default props
   static defaultProps = {
     onItemSelected: () => {},
@@ -19,20 +15,6 @@ class ItemList extends Component {
     onItemSelected: PropTypes.func,
     // getData: PropTypes.arrayOf(PropTypes.object),
   };
-
-  componentDidMount() {
-    // get props from characterPage
-    const { getData } = this.props;
-    // here we receive data from gotService
-    getData().then((itemList) => {
-      this.setState({
-        itemList,
-      });
-    });
-    // .catch(() => {
-    //   this.onError();
-    // });
-  }
 
   componentDidCatch() {
     this.setState({
@@ -65,19 +47,47 @@ class ItemList extends Component {
   }
 
   render() {
-    const { itemList, error } = this.state;
+    const { data } = this.props;
 
-    if (error) {
-      return <ErrorMessage />;
-    }
-    if (!itemList) {
-      return <Spinner />;
-    }
-
-    const items = this.renderItems(itemList);
+    const items = this.renderItems(data);
 
     return <ListGroup className="item-list">{items}</ListGroup>;
   }
 }
 
-export default ItemList;
+// export default ItemList;
+
+const withData = (View, getData) => {
+  return class extends Component {
+    state = {
+      data: null,
+      // error: false,
+    };
+
+    componentDidMount() {
+      // get props from characterPage
+      // const { getData } = this.props;
+      // here we receive data from gotService
+      getData().then((data) => {
+        this.setState({
+          data,
+        });
+      });
+      // .catch(() => {
+      //   this.onError();
+      // });
+    }
+    render() {
+      const { data, error } = this.state;
+      if (error) {
+        return <ErrorMessage />;
+      }
+      if (!data) {
+        return <Spinner />;
+      }
+      return <View {...this.props} data={data} />;
+    }
+  };
+};
+const { getAllCharacters } = new gotService();
+export default withData(ItemList, getAllCharacters);
